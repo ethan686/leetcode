@@ -1,6 +1,6 @@
 ## description.
-![Uploading image.png…]()
-
+![image](https://github.com/ethan686/leetcode/assets/73508499/35f63ed3-7200-40ea-afb8-e35294f68e25)
+ 
 ## self_solution
 ```
 class Solution {
@@ -23,4 +23,6 @@ public:
     }
 };
 ```
-brute, 题目实际上就是找数组大小范围内，大于每一个数的
+brute. no need to explain
+time: O(n^2)
+space:O(1)
