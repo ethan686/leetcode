@@ -1,2 +1,2 @@
 # leetcode
-## record code and thought
+## record code and thoughts
