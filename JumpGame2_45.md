@@ -1,6 +1,7 @@
 ##description
 ![image](https://github.com/ethan686/leetcode/assets/73508499/fd46e8e3-7100-4bb7-ab13-33b861307a49)
-##
+
+...
 class Solution {
 public:
     int jump(vector<int>& nums) {
@@ -13,7 +14,6 @@ public:
         }
         std::vector<int> minJump(n, 10000);
         minJump[n - 1] = 0;
-
         for(int i = n - 2; i >= 0; i--) {
             if(nums[i] + i >= n - 1) {
                 minJump[i] = 1;
@@ -32,3 +32,4 @@ public:
         return minJump[0];
     }
 };
+...
