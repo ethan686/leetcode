@@ -25,5 +25,5 @@ public:
 再遍历ransomNote，在chars中找是否已有该元素，并进行--。一旦出现某个字符无法被已有chars中的元素cover住 报错退出。
 全部都能找到ransomNote，可以被成功构建。
 
-time:2O(n) -> O(n)
+time:O(m + n)
 space:O(1)
