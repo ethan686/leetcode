@@ -61,4 +61,32 @@ public:
 可以直接二分h，找到h最大的一个满足条件的值。每一次二分的时候，对于找到的h，遍历citations数组，判断是否满足条件。
 
 注意，这个二分是判断最大的一个满足条件的值，需要在取mid的时候 (left + right + 1) >> 1。防止死循环
+time : O(logn * n)
+space : O(1)
+
+## 计数排序
+```
+class Solution {
+public:
+    int hIndex(vector<int>& citations) {
+        int n = citations.size();
+        vector<int> cnt(n + 1);
+        for(auto citation : citations) {
+            cnt[min(citation, n)]++;
+        }
+        int sum = 0;
+        for(int i = n; i >=0; i--) {
+            sum += cnt[i];
+            if(sum >= i) {
+                return i;
+            }
+        }
+        return -1;
+    }
+};
+```
+可以记录下来，每一个引用出现的次数(引用次数大于总的论文数的时候，将改引用次数记在论文数对应的位置上 即cnt[n]++)。
+从引用次数最大的开始向下遍历，当出现引用次数的累计大于当前的论文数量的时候，说明找到了最大的h。
+time : O(n)
+space : O(n)
 
