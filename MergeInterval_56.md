@@ -1,0 +1,47 @@
+## description
+![image](https://github.com/ethan686/leetcode/assets/73508499/2180829b-c29e-4af0-9386-b1e33e7af5a5)
+## self_solution
+```
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        vector<vector<int>> result;
+        int n = intervals.size();
+        sort(intervals.begin(), intervals.end());
+        for(int i = 1; i < n; i++) {
+            if(isOverLap(intervals[i-1][0],intervals[i-1][1],intervals[i][0],intervals[i][1])) {
+                int maxRight = max(intervals[i - 1][1], intervals[i][1]);
+                intervals[i - 1][1] = maxRight;
+                intervals[i][1] = maxRight;
+                int minLeft = min(intervals[i][0], intervals[i - 1][0]);
+                intervals[i][0] = minLeft;
+                intervals[i - 1][0] = minLeft;
+                std::cout << minLeft << maxRight << std::endl;
+            } else {
+                result.push_back(intervals[i - 1]);
+            }
+        }
+        result.push_back(intervals[n - 1]);
+        return result;
+    }
+    bool isOverLap(int firstLeft, int firstRight, int secondLeft, int secondRight) {
+        if(firstRight >= secondLeft && firstRight <= secondRight) {
+            return true;
+        }
+        if(firstLeft >= secondLeft && firstLeft <= secondRight) {
+            return true;
+        }
+        if(firstLeft < secondLeft && firstRight > secondRight) {
+            return true;
+        }
+        return false;
+    }
+};
+```
+1. 先对interval数组进行排序，使其第一个元素是从小到大排序
+2. 从index=1的interval开始遍历，如果和前一个相比，元素是有重叠的，那么就修改当前interval 以及之前一个interval
+3. 如果和前一个相比，元素没有重叠，那就把前一个interval放到结果中
+4. 最后把interval[n-1]放到interval中。(要么和前面的重叠，就该放；要么和前面没有重叠，单独也需要放)
+time: O(n*logn + n)
+space :O(logn)
+排序是为了防止，后面隔很远的元素会影响到前面元素的重叠。[[2,3],[4,5],[6,7],[8,9],[1,10]]
